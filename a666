@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	//basic cin
+	int v, n; cin>>v>>n;
+	int A[n];
+	for(int i=1;i<=n;i++) cin>>A[i];
+	
+	// turn everything to zero
+	int nm[n+1][v+1];
+	for(int i=0;i<=n;i++){
+		for(int j=0;j<=v;j++){
+			nm[i][j]=0;
+		}
+	}
+	
+	//main code
+	for(int i=1;i<=n;i++){
+		for(int j=1;j<=v;j++){
+			if(j-A[i]>=0){
+				nm[i][j] = max(nm[i-1][j], nm[i-1][j-A[i]]+A[i]);//me take		
+			}else{
+				nm[i][j]=nm[i-1][j]; // me no take
+			}
+		}
+	}
+
+	cout<<v-nm[n][v];	 //cout answer;
+}
