@@ -1,25 +1,15 @@
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
-	int v, n; cin>>v>>n;
-	int A[n];
-	int answer=0;
-	for(int i=1;i<=n;i++) cin>>A[i];
-	int nm[n+1][v+1];
-	for(int i=0;i<=n;i++){
-		for(int j=0;j<=v;j++){
-			nm[i][j]=0;
-		}
-	}
+	int v,n;cin>>v>>n;
+	vector<int> a(n+1, 0);
+	for(int i=1;i<=n;i++) cin>>a[i];
+	
+	vector<int> dp(v+1, 0);
 	for(int i=1;i<=n;i++){
-		for(int j=1;j<=v;j++){
-			if(j-A[i]>=0){
-				nm[i][j] = max(nm[i-1][j], nm[i-1][j-A[i]]+A[i]);			
-			}else{
-				nm[i][j]=nm[i-1][j];
-			}
+		for(int j=v;j>=a[i];j--){
+			dp[j]=max(dp[j], dp[j-a[i]]+a[i]);
 		}
 	}
-
-	cout<<v-nm[n][v];	
+	cout<<v-dp[v]<<endl;
 }
