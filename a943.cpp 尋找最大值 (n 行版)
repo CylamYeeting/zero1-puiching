@@ -1,0 +1,12 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	int n; cin>>n;
+	vector<int> a(0,n);
+	for(int i=1;i<=n;i++){
+		int b; cin>>b;
+		a.push_back(b);
+	}
+	sort(a.begin(), a.end());
+	cout<<a[a.size()-1];
+}
