@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef vector<double> V1;
+typedef vector<vector<double>> V2;
+
+int main(){
+	int N, M; cin>>N>>M;
+	for(int tc = 1; tc<=M;tc++){
+		int S,R; cin>>S>>R;
+		V1 P(N+1, 0);
+		for(int i=1;i<=N;i++){
+			cin>>P[i];
+		}
+		V1 dp0(N+1, INT_MAX), dp1(N+1, INT_MAX);
+		dp0[0] = 0;
+		for(int i=1;i<=N;i++){
+			dp1[0] = dp0[0] + P[i] * R /100;
+			if(S <=N) dp1[0] = min(dp1[0], dp0[S]);
+			for(int j=1;j<=i;j++){
+				double d = dp0[j] + P[i] * R/100;
+				double o = dp0[j-1] + P[i];
+				dp1[j] = min(d,o);
+			}
+			
+			for(int i=0;i<=N;i++){
+				dp0[i] = dp1[i];
+			}
+		}
+		printf("%.2f\n", dp1[0]);
+	}
+	return 0;
+}
