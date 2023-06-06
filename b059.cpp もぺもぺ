@@ -1,0 +1,14 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	int n, m, k; cin>>n>>m>>k;
+	int answer = k;
+	for(int i=1;i<=m;i++){
+		if((n + answer) %2==0){
+			answer = (n + answer) / 2;
+		}else{
+			answer /=2;
+		}
+	}
+	cout<<answer;
+}
