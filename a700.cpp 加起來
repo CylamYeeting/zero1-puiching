@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define LL long long int
+int main(){
+	int n;
+	while (cin>>n){
+		if(n==0) break;
+		vector<LL> a(n);
+		for(int i=0;i<n; i++) cin>>a[i];
+		priority_queue<LL, vector<LL>, greater<LL>> q;
+		for(int i=0;i<n;i++) q.push(a[i]);
+		
+		LL ans=0;
+		while(q.size() >1){
+			LL x1 = q.top();
+			q.pop();
+			LL x2 = q.top();
+			q.pop();
+			ans = ans+x1+x2;
+			q.push(x1+x2);
+		}
+		cout<<ans<<endl;
+	}
+	return 0;
+}
