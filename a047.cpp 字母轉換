@@ -1,0 +1,9 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    char input;
+    cin>>input;
+    input = input - ' ';
+    input = char(input);
+    cout<< input;
+}
